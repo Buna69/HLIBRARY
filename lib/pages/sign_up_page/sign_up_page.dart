@@ -1,18 +1,16 @@
-import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hlibrary/pages/forgot_passord_page/forgot_password_page.dart';
-import 'package:hlibrary/pages/main_pages/home_page.dart';
-import 'package:hlibrary/pages/sign_up_page/sign_up_page.dart';
+import 'package:hlibrary/pages/login_page/login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:email_validator/email_validator.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
@@ -20,41 +18,14 @@ class _LoginPageState extends State<LoginPage> {
 
   String _email = "";
   String _password = "";
-  bool _passwordError = false;
   bool _isObscure = true;
 
-  void _handleSignIn() async {
-    setState(() {
-      _passwordError = false; // Reset the password error state
-    });
-
+  void _handleSignUp() async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _email,
-        password: _password,
-      );
-
-      debugPrint("User Logged In:${userCredential.user!.email}");
-      Navigator.push( 
-        context,
-        MaterialPageRoute(
-          builder: (context) =>  const HomePage(),
-        ),
-      );
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+      debugPrint("User Registered:${userCredential.user!.email}");
     } catch (e) {
-      debugPrint("Error During Logged In: $e");
-      setState(() {
-        _passwordError = true; // Set the password error state
-      });
-
-      // Hide the error message after 3 seconds
-      Future.delayed(const Duration(seconds: 3), () {
-        if (mounted) {
-          setState(() {
-            _passwordError = false;
-          });
-        }
-      });
+      debugPrint("Error During Registration: $e");
     }
   }
 
@@ -81,13 +52,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("Login", style: TextStyle(color: Colors.white, fontSize: 40)),
+                    Text("Sign Up", style: TextStyle(color: Colors.white, fontSize: 40)),
                     SizedBox(height: 10),
-                    Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 18)),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -120,7 +89,6 @@ class _LoginPageState extends State<LoginPage> {
                                     border: Border(bottom: BorderSide(color: Theme.of(context).colorScheme.background)),
                                   ),
                                   child: TextFormField(
-                                    autovalidateMode: AutovalidateMode.onUserInteraction,
                                     controller: _emailController,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
@@ -181,64 +149,28 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ),
                                 ),
-                                if (_passwordError)
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 30, bottom: 3, top: -1),
-                                    child: Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child: Text(
-                                        'Incorrect password. Please try again.',
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                    ),
-                                  ),
                               ],
                             ),
                           ),
                           const SizedBox(height: 40),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const SignUpPage(),
-                                      ),
-                                    );
-                                  },
-                                  child: const Text(
-                                    "Sign Up",
-                                    style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 255, 162, 0)),
+                          Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const LoginPage(),
                                   ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Center(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const ForgotPasswordPage(),
-                                      ),
-                                    );
-                                  },
-                                  child: const Text(
-                                    "Forgot Password?",
-                                    style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 255, 162, 0)),
-                                  ),
-                                ),
-                              ),
-                            ],
+                                );
+                              },
+                              child: const Text("Sign In", style: TextStyle(fontSize: 15, color: Color.fromARGB(255, 255, 162, 0))),
+                            ),
                           ),
                           const SizedBox(height: 40),
                           MaterialButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                _handleSignIn();
+                                _handleSignUp();
                               }
                             },
                             height: 50,
@@ -246,33 +178,13 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            child: const Center(
-                              child: Text("Sign In", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-                            ),
-                          ),
-                          const SizedBox(height: 40),
-                          const Text("Or", style: TextStyle(color: Colors.grey)),
-                          const SizedBox(height: 30),
-                          MaterialButton(
-                            onPressed: () {},
-                            height: 50,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            color: const Color(0xFFFFB800),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/google.png',
-                                  height: 30,
-                                ),
-                                const SizedBox(width: 10),
-                                const Text(
-                                  "Sign In With Google",
-                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                                ),
-                              ],
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                              },
+                              child: const Center(
+                                child: Text("Sign Up", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                              ),
                             ),
                           ),
                         ],

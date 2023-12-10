@@ -46,7 +46,7 @@ class AppTheme {
   );
 //Colors of dark theme
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
-    canvasColor: const Color.fromARGB(255, 25, 25, 25),
+    canvasColor: const Color.fromARGB(115, 25, 25, 25),
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Color.fromARGB(217, 255, 255, 255),

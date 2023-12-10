@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "799173492059",
+    "project_id": "hlibrary7",
+    "storage_bucket": "hlibrary7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799173492059:android:c058fe44be4aa15612ae7e",
+        "android_client_info": {
+          "package_name": "com.example.hlibrary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjE-ej5ZiyKcsP8tZ1ymOCvZJgAJxHUzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
