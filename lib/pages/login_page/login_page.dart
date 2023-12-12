@@ -1,8 +1,8 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hlibrary/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:hlibrary/pages/forgot_passord_page/forgot_password_page.dart';
-import 'package:hlibrary/pages/main_pages/home_page.dart';
+import 'package:hlibrary/pages/app_pages/main_pages/app_page.dart';
 import 'package:hlibrary/pages/sign_up_page/sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,50 +13,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  bool _isSigning = false ;
+  final FirebaseAuthService _auth = FirebaseAuthService();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  String _email = "";
-  String _password = "";
-  bool _passwordError = false;
+
+  final bool _passwordError = false;
   bool _isObscure = true;
-
-  void _handleSignIn() async {
-    setState(() {
-      _passwordError = false; // Reset the password error state
-    });
-
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _email,
-        password: _password,
-      );
-
-      debugPrint("User Logged In:${userCredential.user!.email}");
-      Navigator.push( 
-        context,
-        MaterialPageRoute(
-          builder: (context) =>  const HomePage(),
-        ),
-      );
-    } catch (e) {
-      debugPrint("Error During Logged In: $e");
-      setState(() {
-        _passwordError = true; // Set the password error state
-      });
-
-      // Hide the error message after 3 seconds
-      Future.delayed(const Duration(seconds: 3), () {
-        if (mounted) {
-          setState(() {
-            _passwordError = false;
-          });
-        }
-      });
-    }
+  
+   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Form(
                       key: _formKey,
                       child: Column(
-                        children: <Widget>[
+                        children: <Widget>[                          
                           Container(
                             decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.background,
@@ -122,18 +96,9 @@ class _LoginPageState extends State<LoginPage> {
                                   child: TextFormField(
                                     autovalidateMode: AutovalidateMode.onUserInteraction,
                                     controller: _emailController,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter your email';
-                                      } else if (!EmailValidator.validate(value)) {
-                                        return 'Enter a valid email';
-                                      }
-                                      return null;
-                                    },
+                                    
                                     onChanged: (value) {
-                                      setState(() {
-                                        _email = value;
-                                      });
+                                     
                                     },
                                     decoration: const InputDecoration(
                                       hintText: "Email",
@@ -150,16 +115,10 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   child: TextFormField(
                                     controller: _passwordController,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter your password';
-                                      }
-                                      return null;
-                                    },
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                                    
                                     onChanged: (value) {
-                                      setState(() {
-                                        _password = value;
-                                      });
+                                   
                                     },
                                     obscureText: _isObscure,
                                     decoration: InputDecoration(
@@ -171,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                                           });
                                         },
                                         child: Icon(
-                                          _isObscure ? Icons.visibility : Icons.visibility_off,
+                                          _isObscure ? Icons.visibility_off : Icons.visibility,
                                           color: const Color(0xFFFFB800),
                                         ),
                                       ),
@@ -236,43 +195,15 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           const SizedBox(height: 40),
                           MaterialButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                _handleSignIn();
-                              }
-                            },
+                            onPressed: _signIn,
                             height: 50,
                             color: const Color(0xFFFFB800),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            child: const Center(
-                              child: Text("Sign In", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-                            ),
-                          ),
-                          const SizedBox(height: 40),
-                          const Text("Or", style: TextStyle(color: Colors.grey)),
-                          const SizedBox(height: 30),
-                          MaterialButton(
-                            onPressed: () {},
-                            height: 50,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            color: const Color(0xFFFFB800),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  'assets/images/google.png',
-                                  height: 30,
-                                ),
-                                const SizedBox(width: 10),
-                                const Text(
-                                  "Sign In With Google",
-                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                                ),
-                              ],
+                            child:  Center(
+                              child: _isSigning ? const CircularProgressIndicator(color: Color.fromARGB(255, 0, 0, 0)):
+                              const Text("Sign In", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                             ),
                           ),
                         ],
@@ -287,4 +218,35 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+void _signIn() async {
+
+    setState(() {
+      _isSigning =true;
+    });
+
+    String email = _emailController.text;
+    String password = _passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    setState(() {
+      _isSigning =false;
+    });
+
+
+    if (user != null){
+      debugPrint("Signed In");
+      if (mounted) {
+      Navigator.push(context, MaterialPageRoute(
+              builder: (context) => const AppMain(),
+              ),);
+      }
+    }else {
+       debugPrint("some error "); 
+    }
+
+  }
+
+
 }

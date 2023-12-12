@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 //Colors of light theme
 class AppTheme {
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    canvasColor: const Color.fromARGB(255, 255, 255, 255),
+    canvasColor: const Color.fromARGB(255, 236, 239, 241),
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: Color.fromARGB(223, 0, 0, 0),
@@ -31,11 +31,11 @@ class AppTheme {
       fillColor: const Color.fromARGB(61, 128, 128, 128),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Color.fromARGB(0, 33, 149, 243)),
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(30.0),
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Color.fromARGB(0, 128, 128, 128)),
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(30.0),
       ),
       
       labelStyle: const TextStyle(
@@ -46,10 +46,10 @@ class AppTheme {
   );
 //Colors of dark theme
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
-    canvasColor: const Color.fromARGB(115, 25, 25, 25),
+    canvasColor: const Color.fromARGB(61, 128, 128, 128),
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
-      primary: Color.fromARGB(217, 255, 255, 255),
+      primary: Color.fromARGB(255, 255, 255, 255),
       onPrimary: Color.fromARGB(255, 255, 255, 255),
       secondary: Color.fromARGB(255, 0, 0, 0),
       onSecondary: Color.fromARGB(255, 25, 25, 25),
@@ -63,7 +63,7 @@ class AppTheme {
     textSelectionTheme: const TextSelectionThemeData(
         cursorColor: Color(0xFFFFB800),
         selectionColor: Color(0xFFFFB800),
-        selectionHandleColor: Colors.black),
+        selectionHandleColor: Color.fromARGB(255, 250, 250, 250)),
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
     scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
@@ -74,11 +74,11 @@ class AppTheme {
       fillColor: const Color.fromARGB(61, 128, 128, 128),
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Color.fromARGB(0, 33, 149, 243)),
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(30.0),
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Color.fromARGB(0, 128, 128, 128)),
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(30.0),
       ),
       labelStyle: const TextStyle(
         color: Color.fromARGB(255, 254, 254, 254),

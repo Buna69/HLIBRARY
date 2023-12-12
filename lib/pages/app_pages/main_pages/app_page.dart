@@ -1,18 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:hlibrary/pages/main_pages/user_page/widgets/pages.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  import 'package:flutter/material.dart';
+  import 'package:flutter/services.dart';
+  import 'package:hlibrary/pages/app_pages/main_pages/pages.dart';
+  import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+  class AppMain extends StatefulWidget {
+    const AppMain({Key? key}) : super(key: key);
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+    @override
+    _AppMainState createState() => _AppMainState();
+  }
 
-class _HomePageState extends State<HomePage> {
+ class _AppMainState extends State<AppMain> {
   bool _isStatusBarVisible = false;
   int _selectedItem = 0;
-  final _pages = [FirstPage(), SecondPage(), ThirdPage()];
   final _pageController = PageController();
   Color? textColor;
 
@@ -24,7 +23,6 @@ class _HomePageState extends State<HomePage> {
 
   void hideStatusBar() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: [
-   
       SystemUiOverlay.top,
     ]);
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -47,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         if (_isStatusBarVisible) {
           hideStatusBar();
         } else {
-          showStatusBar();
+          
         }
       },
       child: Scaffold(
@@ -58,25 +56,29 @@ class _HomePageState extends State<HomePage> {
             });
           },
           controller: _pageController,
-          children: _pages,
+          children: const [
+            FirstPage(key: PageStorageKey('FirstPage')),
+            ThirdPage(key: PageStorageKey('ThirdPage')),
+            FourthPage(key: PageStorageKey('FourthPage')),
+          ],
         ),
         bottomNavigationBar: SalomonBottomBar(
-          items:  <SalomonBottomBarItem>[
+          backgroundColor: Theme.of(context).canvasColor,
+          items: <SalomonBottomBarItem>[
             SalomonBottomBarItem(
-              icon: const Icon(Icons.home_outlined,size: 30,),
-              title:  Text('Home',style:  Theme.of(context).textTheme.titleMedium?.apply(color: textColor)),
-              selectedColor: Colors.amber,
-              
+              icon: const Icon(Icons.home_outlined, size: 30),
+              title: Text('Home', style: Theme.of(context).textTheme.titleMedium?.apply(color: textColor)),
+              selectedColor: const Color(0xFFFFB800),
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.menu_book_outlined,size: 30,),
-              title: Text('Library',style:  Theme.of(context).textTheme.titleMedium?.apply(color: textColor)),
-              selectedColor: Colors.amber,
+              icon: const Icon(Icons.menu_book_outlined, size: 30),
+              title: Text('Library', style: Theme.of(context).textTheme.titleMedium?.apply(color: textColor)),
+              selectedColor: const Color(0xFFFFB800),
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.person,size: 30,),
-              title:  Text('User',style:  Theme.of(context).textTheme.titleMedium?.apply(color: textColor)),
-              selectedColor: Colors.amber,
+              icon: const Icon(Icons.person, size: 30),
+              title: Text('User', style: Theme.of(context).textTheme.titleMedium?.apply(color: textColor)),
+              selectedColor: const Color(0xFFFFB800),
             )
           ],
           currentIndex: _selectedItem,

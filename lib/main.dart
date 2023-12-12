@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hlibrary/app_theme.dart';
-import 'package:hlibrary/pages/forgot_passord_page/forgot_password_page.dart';
-import 'package:hlibrary/pages/login_page/login_page.dart';
-import 'package:hlibrary/pages/main_pages/home_page.dart';
-import 'package:hlibrary/pages/main_pages/user_page/user_page.dart';
-import 'package:hlibrary/splash_screen.dart';
+import 'package:hlibrary/pages/app_pages/main_pages/app_page.dart';
 import 'package:hlibrary/theme_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,7 +31,7 @@ class MainApp extends HookConsumerWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode:
           AppThemeState.isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light,
-      home: const HomePage(),
+      home: const AppMain(),
     );
   }
 }

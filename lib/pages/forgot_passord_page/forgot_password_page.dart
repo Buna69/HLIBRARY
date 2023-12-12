@@ -27,8 +27,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         emailSent = true;
       });
 
-      // Delay for 3 seconds before go login
-      Future.delayed(const Duration(seconds: 3), () {
+      
+      Future.delayed(const Duration(seconds: 2), () {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -128,7 +128,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 100),
+                            const SizedBox(height: 60),
                             MaterialButton(
                               onPressed: () {
                                 passwordReset();
@@ -155,7 +155,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               left: 0,               
                 child: IconButton(
                   icon: const Icon(Icons.arrow_back),
-                  iconSize: 40,
+                  iconSize: 30,
                   onPressed: () {
                     Navigator.pop(context);
                   },

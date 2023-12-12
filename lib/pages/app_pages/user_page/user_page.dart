@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hlibrary/pages/login_page/login_page.dart';
-import 'package:hlibrary/pages/main_pages/user_page/widgets/profile_menu_widget.dart';
+import 'package:hlibrary/pages/app_pages/user_page/edit_profile.dart';
+import 'package:hlibrary/pages/app_pages/user_page/widgets/profile_menu_widget.dart';
 import 'package:hlibrary/theme_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -60,7 +61,9 @@ class _userPageState extends State<userPage> {
                 width: 200,
                 child: MaterialButton(
                             onPressed: () {
-                              
+                               Navigator.push(context, MaterialPageRoute(
+              builder: (context) => const EditProfilePage(),
+              ),);
                             },
                             height: 50,
                             color: const Color(0xFFFFB800),
@@ -77,20 +80,18 @@ class _userPageState extends State<userPage> {
               const SizedBox(height: 10),
 
 
-              ProfileMenuWidget(title: "Settings", icon: LineAwesomeIcons.cog, onPress: () {}),
-              ProfileMenuWidget(title: "Billing Details", icon: LineAwesomeIcons.wallet, onPress: () {}),
-              ProfileMenuWidget(title: "User Management", icon: LineAwesomeIcons.user_check, onPress: () {}),
+              ProfileMenuWidget(title: "Download History", icon: LineAwesomeIcons.download, onPress: () {}),
               const SizedBox(height: 30),
               const Divider(),
               const SizedBox(height: 10),
-              ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () {}),
+              ProfileMenuWidget(title: "About", icon: LineAwesomeIcons.info, onPress: () {}),
               ProfileMenuWidget(
                   title: "Logout",
                   icon: LineAwesomeIcons.alternate_sign_out,
                   textColor: Colors.red,
                   endIcon: false,
                   onPress: () {                   
-                    _auth.signOut();
+                    FirebaseAuth.instance.signOut();
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context)=>const LoginPage()));

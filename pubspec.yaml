@@ -30,6 +30,9 @@ dependencies:
   email_validator: '^2.1.16'
   password_field_validator: ^0.0.1
   carousel_slider: ^4.0.0
+  fluttertoast: ^8.2.4
+  get: ^4.6.6
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
