@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hlibrary/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:hlibrary/pages/forgot_passord_page/forgot_password_page.dart';
-import 'package:hlibrary/pages/app_pages/main_pages/app_page.dart';
+import 'package:hlibrary/pages/app_pages/app_page.dart';
 import 'package:hlibrary/pages/sign_up_page/sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -243,7 +243,7 @@ void _signIn() async {
               ),);
       }
     }else {
-       debugPrint("some error "); 
+       debugPrint("some error occured"); 
     }
 
   }

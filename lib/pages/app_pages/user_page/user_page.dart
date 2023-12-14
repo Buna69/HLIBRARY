@@ -1,21 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hlibrary/pages/login_page/login_page.dart';
 import 'package:hlibrary/pages/app_pages/user_page/edit_profile.dart';
+import 'package:hlibrary/pages/login_page/login_page.dart';
+import 'package:hlibrary/pages/app_pages/user_page/edit_profile_email.dart';
 import 'package:hlibrary/pages/app_pages/user_page/widgets/profile_menu_widget.dart';
 import 'package:hlibrary/theme_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
-class userPage extends StatefulWidget {
-  const userPage({super.key});
+
+class UserPage extends StatefulWidget {
+  const UserPage({super.key});
 
   @override
-  State<userPage> createState() => _userPageState();
+  State<UserPage> createState() => _UserPageState();
 }
+final currentUser = FirebaseAuth.instance.currentUser;
+final email =currentUser!.email;
+final username =currentUser!.displayName;
+class _UserPageState extends State<UserPage> {
 
-class _userPageState extends State<userPage> {
-  final FirebaseAuth _auth =FirebaseAuth.instance;
   @override  
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,33 +32,19 @@ class _userPageState extends State<userPage> {
             children: [
               const  DarkModeSwitch(),  
               const SizedBox(height: 10,),
-              Stack(
-                children: [
-                  SizedBox(
-                    width: 120,
-                    height: 120,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100), child: const Image(image: AssetImage('assets/images/logo.png'))),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: const Color(0xFFFFB800)),
-                      child: const Icon(
-                        LineAwesomeIcons.alternate_pencil,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ],
+              SizedBox(
+                width: 130,
+                height: 130,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100), child: const Image(image: AssetImage('assets/images/default.png'))),
               ),
               const SizedBox(height: 10),
-              const Text("Nickname", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
-              const Text("Email@email.com", style: TextStyle(fontSize: 17,)),
+               if (username == null)
+                Text('$email', style: const TextStyle(fontSize: 17,))
+              else
+                Text('$username', style: const TextStyle(fontSize: 17,)),
+              const SizedBox(height: 10),
+               Text('$email', style: const TextStyle(fontSize: 17,)),
               const SizedBox(height: 20),
 
 
@@ -101,12 +92,12 @@ class _userPageState extends State<userPage> {
           ),
         ),
       ),
-    );   
+    );
   }
 }
 //dark theme toggle
 class DarkModeSwitch extends HookConsumerWidget {
-  const DarkModeSwitch({Key? key}) : super(key: key);
+  const DarkModeSwitch({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

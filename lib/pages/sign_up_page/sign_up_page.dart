@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hlibrary/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:hlibrary/pages/login_page/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hlibrary/pages/app_pages/main_pages/app_page.dart';
+import 'package:hlibrary/pages/app_pages/app_page.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  const SignUpPage({super.key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -121,7 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                             });
                                           },
                                           child: Icon(
-                                            _isObscure ? Icons.visibility : Icons.visibility_off,
+                                            _isObscure ? Icons.visibility_off : Icons.visibility,
                                             color: const Color(0xFFFFB800),
                                           ),
                                         ),

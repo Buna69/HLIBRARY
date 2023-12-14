@@ -1,26 +1,51 @@
+import 'dart:typed_data';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hlibrary/global/common/add_data.dart';
+import 'package:hlibrary/pages/app_pages/main_pages/home_page.dart';
+import 'package:hlibrary/pages/app_pages/user_page/edit_profile_email.dart';
+import 'package:hlibrary/pages/app_pages/user_page/edit_profile_username.dart';
+import 'package:hlibrary/pages/app_pages/user_page/edit_profile_password.dart';
 import 'package:hlibrary/pages/app_pages/user_page/user_page.dart';
+import 'package:hlibrary/pages/app_pages/user_page/widgets/profile_menu_widget.dart';
+import 'package:hlibrary/global/common/pick_image.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-
+import 'package:hlibrary/global/common/add_data.dart';
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({super.key});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
+  
 
-bool _isObscure = true;
-TextEditingController _emailController = TextEditingController();
-TextEditingController _passwordController = TextEditingController();
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  Uint8List? _image;
+
+void selectImage()async{
+  Uint8List img = await pickImage(ImageSource.gallery);
+  setState((){
+    _image = img;
+  });
+}
+void saveProfile()async {
+
+
+}
+
+final creationTime = FirebaseAuth.instance.currentUser!.metadata.creationTime;
+final email = FirebaseAuth.instance.currentUser?.email;
+final username = FirebaseAuth.instance.currentUser?.displayName;
+final TextEditingController _newNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title:const Center(child:  Padding(
           padding: EdgeInsets.only(right: 55),
-          child: Text('EditProfile', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+          child: Text('Edit Profile', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
         )),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -37,100 +62,98 @@ class _EditProfilePageState extends State<EditProfilePage> {
             children: [
               Stack(
                 children: [
-                  SizedBox(
-                    width: 120,
-                    height: 120,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: const Image(image: AssetImage('assets/images/logo.png')),
-                    ),
+                  if (_image != null) CircleAvatar(
+                      radius: 65,
+                      backgroundImage: MemoryImage(_image!),
+                    ) else const CircleAvatar(
+                    radius: 65,
+                    backgroundImage: AssetImage('assets/images/default.png'),
                   ),
                   Positioned(
                     bottom: 0,
                     right: 0,
                     child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: const Color(0xFFFFB800),
+                      width: 40, 
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFFFB800),
+                        shape: BoxShape.circle, 
                       ),
-                      child: const Icon(LineAwesomeIcons.camera, color: Colors.black, size: 20),
+                      child: IconButton(
+                        onPressed: selectImage,
+                        icon: const Icon(LineAwesomeIcons.retro_camera),
+                      ),
                     ),
                   ),
                 ],
               ),
+              const SizedBox(height: 10),
+              
               const SizedBox(height: 50),
-
-              Form(
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        label: Text('Nickname'),
-                        prefixIcon: Icon(LineAwesomeIcons.user),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      controller: _emailController,
+              TextFormField(
+                      controller: _newNameController,
                       onChanged: (value) {},
-                      decoration: const InputDecoration(
-                        label: Text("Email"),
-                        prefixIcon: Icon(Icons.email_outlined),
-                        hintStyle: TextStyle(color: Colors.grey),
-                        border: InputBorder.none,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextFormField(
-                      controller: _passwordController,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      onChanged: (value) {},
-                      obscureText: _isObscure,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock_outline),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _isObscure = !_isObscure;
-                            });
-                          },
-                          child: Icon(
-                            _isObscure ? Icons.visibility_off : Icons.visibility,
-                            color: const Color(0xFFFFB800),
-                          ),
-                        ),
-                        label: const Text("Password"),
+                      decoration:  InputDecoration(
+                        prefixIcon: const Icon(Icons.person),
+                        label: const Text("New Username"),
+                        hintText: '$username',
                         hintStyle: const TextStyle(color: Colors.grey),
                         border: InputBorder.none,
                       ),
+                      
                     ),
-                    const SizedBox(height: 50),
-
-                    SizedBox(
-                      height: 50,
-                      width: double.infinity,
-                      child: MaterialButton(
-                            onPressed: () {
-                               Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => const userPage(),
-                                ),);
-                            },
-                            height: 50,
-                            color: const Color(0xFFFFB800),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                              child: const Center(
-                                child: Text("Confirm", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-                              ),
-                            ),
-                    ),                    
-                  ],
-                ),
+              const SizedBox(height: 10),
+              ProfileMenuWidget(title: "Change Email", icon: Icons.email_outlined, onPress: () {
+                Navigator.push(context, MaterialPageRoute(
+              builder: (context) => const EditProfileEmailPage(),
+              ),);
+                         
+              }),
+              const SizedBox(height: 10),
+              ProfileMenuWidget(title: "Change Password", icon: LineAwesomeIcons.lock, onPress: () {
+                 Navigator.push(context, MaterialPageRoute(
+              builder: (context) => const EditProfilePasswordPage(),
+              ),);
+              }),
+              const SizedBox(height: 30,),
+              SizedBox(
+                    width: 200,
+                    child: MaterialButton(
+                                onPressed: saveProfile,
+                                height: 50,
+                                color: const Color(0xFFFFB800),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                  child: const Center(
+                                    child: Text("Save Profile", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                                  ),
+                                ),
+                  ),
+                  const SizedBox(height:230),
+              Row(
+                children: [
+                  Text("$creationTime"),
+                  const Spacer(),
+                  SizedBox(
+                    width: 100,
+                    child: MaterialButton(
+                                onPressed: () {
+                                   
+                                },
+                                height: 50,
+                                color: const Color.fromARGB(255, 255, 17, 0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                  child: const Center(
+                                    child: Text("Delete", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                                  ),
+                                ),
+                  ),
+                ],
               ),
+              
             ],
           ),
         ),

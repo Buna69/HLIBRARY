@@ -11,3 +11,13 @@ void showToast({required String message}){
     
   );
 }
+void showToastMsg({required String message}){
+  Fluttertoast.showToast(
+    msg:message,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 1,
+    backgroundColor: const Color(0xFFFFB800),
+    
+  );
+}

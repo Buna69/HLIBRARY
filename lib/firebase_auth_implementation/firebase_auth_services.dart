@@ -3,6 +3,7 @@ import 'package:hlibrary/global/common/toast.dart';
 
 class FirebaseAuthService{
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  
 
   Future<User?> signUpWithEmailAndPassword(String email, String password,) async{
 

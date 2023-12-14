@@ -3,13 +3,13 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
     required this.onPress,
     this.endIcon = true,
     this.textColor,
-  }) : super(key: key);
+  });
 
   final String title;
   final IconData icon;
@@ -20,12 +20,12 @@ class ProfileMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var isDark = MediaQuery.of(context).platformBrightness == Brightness.values;
+    var isDark = MediaQuery.of(context).platformBrightness ==Brightness.values;
     var iconColor = isDark ? const Color.fromARGB(86, 255, 235, 59) : Colors.amber;
 
     return ListTile(
       onTap: onPress,
-      leading: Container(
+      leading: Container( 
         width: 40,
         height: 40,
         decoration: BoxDecoration(
@@ -42,7 +42,7 @@ class ProfileMenuWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
             color: Colors.grey.withOpacity(0.1),
           ),
-          child: const Icon(LineAwesomeIcons.angle_right, size: 18.0, color: Colors.grey)) : null,
+          child: const Icon(LineAwesomeIcons.angle_right, size: 18.0, color: Color(0xFFFFB800),)) : null,
     );
   }
 }

@@ -19,7 +19,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   animate_do: ^3.1.2
   shadow: ^1.5.0
-  flutter_helper_utils: ^1.6.0
+  flutter_helper_utils: ^2.0.1
   iconsax: ^0.0.8
   flutter_color_utils: ^0.0.1
   flutter_screenutil: ^5.9.0
@@ -33,11 +33,15 @@ dependencies:
   fluttertoast: ^8.2.4
   get: ^4.6.6
   flutter_rating_bar: ^4.0.1
+  cloud_firestore: ^4.13.5
+  image_picker: ^1.0.5
+  firebase_storage: ^11.5.6
+  firebase_app_check: ^0.2.1+8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter_launcher_icons:
   android: true

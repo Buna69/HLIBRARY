@@ -4,6 +4,7 @@ class SearchTextField extends StatefulWidget {
   const SearchTextField({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SearchTextFieldState createState() => _SearchTextFieldState();
 }
 

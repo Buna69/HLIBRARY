@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 //Colors of light theme
 class AppTheme {
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    canvasColor: const Color.fromARGB(255, 236, 239, 241),
+    canvasColor: const Color.fromARGB(255, 240,240,240),
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: Color.fromARGB(223, 0, 0, 0),
@@ -46,7 +46,7 @@ class AppTheme {
   );
 //Colors of dark theme
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
-    canvasColor: const Color.fromARGB(61, 128, 128, 128),
+    canvasColor: const Color.fromARGB(255, 30,30,30),
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Color.fromARGB(255, 255, 255, 255),

@@ -7,14 +7,14 @@ import 'package:hlibrary/pages/app_pages/search_page/search_page.dart';
 import 'package:hlibrary/pages/book_read/book_read.dart';
 
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomePageState extends State<HomePage> {
 
   TextEditingController txtName = TextEditingController();
   TextEditingController txtEmail = TextEditingController();
@@ -188,7 +188,7 @@ class _HomeViewState extends State<HomeView> {
                           icon: const Icon(Icons.search),
                          onPressed: () {
                                Navigator.push(context, MaterialPageRoute(
-                                builder: (context) =>  SearchPage(),
+                                builder: (context) =>  const SearchPage(),
                                 ),);
                             },
                         ),

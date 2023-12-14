@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:hlibrary/colors.dart';
 
 class RecentlyCell extends StatelessWidget {
   final Map iObj;

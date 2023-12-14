@@ -10,16 +10,27 @@ class Book {
 
 class BookGrid extends StatelessWidget {
   final List<Book> books = [
-    Book(name: 'Book 4', imageUrl: 'assets/images/1.jpg'),
-    Book(name: 'Book 5', imageUrl: 'assets/images/2.jpg'),
-    Book(name: 'Book 6', imageUrl: 'assets/images/3.jpg'),
-    Book(name: 'Book 7', imageUrl: 'assets/images/4.jpg'),
-    Book(name: 'Book 9', imageUrl: 'assets/images/5.jpg'),
-    Book(name: 'Book 8', imageUrl: 'assets/images/6.jpg'),
+    Book(name: 'Shoujin Manga', imageUrl: 'assets/images/1.jpg'),
+    Book(name: 'Jujutsu Kaisen', imageUrl: 'assets/images/2.jpg'),
+    Book(name: 'The Faraway Paladin', imageUrl: 'assets/images/3.jpg'),
+    Book(name: 'My Hero Academia', imageUrl: 'assets/images/4.jpg'),
+    Book(name: 'Улаанмөчирийн Багачууд', imageUrl: 'assets/images/5.jpg'),
+    Book(name: 'Хойд Дүр', imageUrl: 'assets/images/6.jpg'),
+    Book(name: 'Харанхуйн Хутга', imageUrl: 'assets/images/7.jpg'),
+    Book(name: 'Сарны Гэрэл', imageUrl: 'assets/images/8.jpg'),
+    Book(name: 'Shoujin Manga', imageUrl: 'assets/images/1.jpg'),
+    Book(name: 'Jujutsu Kaisen', imageUrl: 'assets/images/2.jpg'),
+    Book(name: 'The Faraway Paladin', imageUrl: 'assets/images/3.jpg'),
+    Book(name: 'My Hero Academia', imageUrl: 'assets/images/4.jpg'),
+    Book(name: 'Улаанмөчирийн Багачууд', imageUrl: 'assets/images/5.jpg'),
+    Book(name: 'Хойд Дүр', imageUrl: 'assets/images/6.jpg'),
+    Book(name: 'Харанхуйн Хутга', imageUrl: 'assets/images/7.jpg'),
+    Book(name: 'Сарны Гэрэл', imageUrl: 'assets/images/8.jpg'),
+    
     //loop hiine
   ];
 
-  BookGrid({Key? key}) : super(key: key);
+  BookGrid({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -37,9 +37,9 @@ class _BookReadingViewState extends State<BookReadingView> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(
+                icon:const Icon(
                   Icons.arrow_back_ios,
-                  color: TColor.primary,
+                  color:  Color(0xFFFFB800),
                 ),
               ),
               actions: [

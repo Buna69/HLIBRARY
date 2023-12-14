@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hlibrary/pages/app_pages/library_page/library_page.dart';
 import 'package:hlibrary/pages/app_pages/main_pages/home_page.dart';
-import 'package:hlibrary/pages/app_pages/main_pages/app_page.dart';
-import 'package:hlibrary/pages/app_pages/search_page/widgets/search_bar_widget.dart';
 import 'package:hlibrary/pages/app_pages/search_page/widgets/search_bar_with_animat.dart';
 import 'package:hlibrary/pages/app_pages/user_page/user_page.dart';
 
 class FirstPage extends StatefulWidget {
-  const FirstPage({Key? key}) : super(key: key);
+  const FirstPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -21,22 +19,22 @@ class _FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMixi
     
     
      return const Scaffold(
-      body: HomeView(),);
+      body: HomePage(),);
   }
 
   @override
   bool get wantKeepAlive => true;
 }
 
-class ThirdPage extends StatefulWidget {
-  const ThirdPage({Key? key}) : super(key: key);
+class SecondPage extends StatefulWidget {
+  const SecondPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _ThirdPageState createState() => _ThirdPageState();
+  _SecondPageState createState() => _SecondPageState();
 }
 
-class _ThirdPageState extends State<ThirdPage> with AutomaticKeepAliveClientMixin {
+class _SecondPageState extends State<SecondPage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context); 
@@ -52,21 +50,21 @@ class _ThirdPageState extends State<ThirdPage> with AutomaticKeepAliveClientMixi
 }
 
 
-class FourthPage extends StatefulWidget {
-  const FourthPage({Key? key}) : super(key: key);
+class ThirdPage extends StatefulWidget {
+  const ThirdPage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _FourthPageState createState() => _FourthPageState();
+  _ThirdPageState createState() => _ThirdPageState();
 }
 
-class _FourthPageState extends State<FourthPage> with AutomaticKeepAliveClientMixin {
+class _ThirdPageState extends State<ThirdPage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context); 
     
     
-    return const Scaffold(body:userPage());
+    return const Scaffold(body:UserPage());
   }
 
   @override

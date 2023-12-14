@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class SearchBarWithClearButton extends StatefulWidget
     implements PreferredSizeWidget {
-  const SearchBarWithClearButton({Key? key}) : super(key: key);
+  const SearchBarWithClearButton({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SearchBarWithClearButtonState createState() =>
       _SearchBarWithClearButtonState();
 

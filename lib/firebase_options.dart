@@ -44,8 +44,8 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA9GapP31tOrTzc59KpgCKcu9aCCQi6vhA',
-    appId: '1:799173492059:web:848ea9a1186aee3f12ae7e',
+    apiKey: 'AIzaSyCjE-ej5ZiyKcsP8tZ1ymOCvZJgAJxHUzA',
+    appId: '1:799173492059:android:c058fe44be4aa15612ae7e',
     messagingSenderId: '799173492059',
     projectId: 'hlibrary7',
     authDomain: 'hlibrary7.firebaseapp.com',
@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '799173492059',
     projectId: 'hlibrary7',
     storageBucket: 'hlibrary7.appspot.com',
+    iosClientId: '799173492059-0rq5tq0gi36prej1r7c091phmef07pge.apps.googleusercontent.com',
     iosBundleId: 'com.example.hlibrary',
   );
 
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '799173492059',
     projectId: 'hlibrary7',
     storageBucket: 'hlibrary7.appspot.com',
+    iosClientId: '799173492059-fuid24tie24nnr3iennci2kmkigiv4is.apps.googleusercontent.com',
     iosBundleId: 'com.example.hlibrary.RunnerTests',
   );
 }
