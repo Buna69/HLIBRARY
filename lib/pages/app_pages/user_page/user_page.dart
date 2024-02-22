@@ -97,26 +97,21 @@ class _UserPageState extends State<UserPage> {
 }
 //dark theme toggle
 class DarkModeSwitch extends HookConsumerWidget {
-  const DarkModeSwitch({super.key});
+  const DarkModeSwitch({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-  final appThemeState = ref.watch(appThemeStateNotifier);
+    final appThemeState = ref.watch(appThemeStateNotifier);
 
-  return ToggleButtons(
-    isSelected: [!appThemeState.isDarkModeEnabled, appThemeState.isDarkModeEnabled],
-    onPressed: (int index) {
-      if (index == 0) {
-        appThemeState.setLightTheme();
-      } else {
-        appThemeState.setDarkTheme();
-      }
-    },
-    children: const [
-      Icon(Icons.wb_sunny),
-      Icon(Icons.nightlight_round),
-    ],
-  );
-}
-
+    return ToggleButtons(
+      isSelected: [!appThemeState.isDarkModeEnabled, appThemeState.isDarkModeEnabled],
+      onPressed: (int index) {
+        appThemeState.toggleTheme(); // Step 2: Toggle the theme mode
+      },
+      children: const [
+        Icon(Icons.wb_sunny),
+        Icon(Icons.nightlight_round),
+      ],
+    );
+  }
 }

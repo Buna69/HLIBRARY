@@ -44,40 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCjE-ej5ZiyKcsP8tZ1ymOCvZJgAJxHUzA',
-    appId: '1:799173492059:android:c058fe44be4aa15612ae7e',
-    messagingSenderId: '799173492059',
-    projectId: 'hlibrary7',
-    authDomain: 'hlibrary7.firebaseapp.com',
-    storageBucket: 'hlibrary7.appspot.com',
-    measurementId: 'G-QT5F5BWHG8',
+    apiKey: 'AIzaSyChu00oYXfZms93p2N-S0pQ9yEFnJW3knM',
+    appId: '1:416101594277:web:2a8b63d9d51a6d0165494c',
+    messagingSenderId: '416101594277',
+    projectId: 'hlibrary-e7f50',
+    authDomain: 'hlibrary-e7f50.firebaseapp.com',
+    storageBucket: 'hlibrary-e7f50.appspot.com',
+    measurementId: 'G-BJ1HKJBGYH',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCjE-ej5ZiyKcsP8tZ1ymOCvZJgAJxHUzA',
-    appId: '1:799173492059:android:c058fe44be4aa15612ae7e',
-    messagingSenderId: '799173492059',
-    projectId: 'hlibrary7',
-    storageBucket: 'hlibrary7.appspot.com',
+    apiKey: 'AIzaSyBAqVkeUnhgGTAQ82u5sjSXflRk6iJlWyk',
+    appId: '1:416101594277:android:04a255e604db374c65494c',
+    messagingSenderId: '416101594277',
+    projectId: 'hlibrary-e7f50',
+    storageBucket: 'hlibrary-e7f50.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCK0Av3qed10uIzbZnKFD70OfCDLCgSd-o',
-    appId: '1:799173492059:ios:202a7f4bfa638b1712ae7e',
-    messagingSenderId: '799173492059',
-    projectId: 'hlibrary7',
-    storageBucket: 'hlibrary7.appspot.com',
-    iosClientId: '799173492059-0rq5tq0gi36prej1r7c091phmef07pge.apps.googleusercontent.com',
+    apiKey: 'AIzaSyA2HXS2veif8K7iwEXhPkyzUJ5P282ZHeI',
+    appId: '1:416101594277:ios:07f22839c784ca8565494c',
+    messagingSenderId: '416101594277',
+    projectId: 'hlibrary-e7f50',
+    storageBucket: 'hlibrary-e7f50.appspot.com',
     iosBundleId: 'com.example.hlibrary',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCK0Av3qed10uIzbZnKFD70OfCDLCgSd-o',
-    appId: '1:799173492059:ios:b96326388e6087f112ae7e',
-    messagingSenderId: '799173492059',
-    projectId: 'hlibrary7',
-    storageBucket: 'hlibrary7.appspot.com',
-    iosClientId: '799173492059-fuid24tie24nnr3iennci2kmkigiv4is.apps.googleusercontent.com',
+    apiKey: 'AIzaSyA2HXS2veif8K7iwEXhPkyzUJ5P282ZHeI',
+    appId: '1:416101594277:ios:300d9decd8c1f1b265494c',
+    messagingSenderId: '416101594277',
+    projectId: 'hlibrary-e7f50',
+    storageBucket: 'hlibrary-e7f50.appspot.com',
     iosBundleId: 'com.example.hlibrary.RunnerTests',
   );
 }

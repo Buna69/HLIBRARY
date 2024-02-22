@@ -128,7 +128,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 60),
+                            const SizedBox(height: 45),
                             MaterialButton(
                               onPressed: () {
                                 passwordReset();
