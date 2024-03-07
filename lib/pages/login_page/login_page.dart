@@ -38,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
+
           height: double.infinity,
           width: double.infinity,
           decoration: const BoxDecoration(
